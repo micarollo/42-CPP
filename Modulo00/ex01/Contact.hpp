@@ -14,4 +14,9 @@ public:
     void    set_nickname(std::string nickName);
     void    set_phonenum(std::string phoneNum);
     void    set_darksecret(std::string darkSecret);
+    const std::string&	get_firstname(void);
+	const std::string&	get_lastname(void);
+	const std::string&	get_nickname(void);
+	const std::string&	get_phonenum(void);
+	const std::string&	get_darksecret(void);
 };

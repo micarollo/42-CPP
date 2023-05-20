@@ -20,3 +20,23 @@ void    Contact::set_phonenum(std::string phoneNum)  {
 void    Contact::set_darksecret(std::string darkSecret)  {
     this->darksecret = darkSecret;
 };
+
+const std::string&    Contact::get_firstname() {
+    return (this->firstname);
+};
+
+const std::string&    Contact::get_lastname() {
+    return (this->lastname);
+};
+
+const std::string&    Contact::get_nickname() {
+    return (this->nickname);
+};
+
+const std::string&    Contact::get_phonenum() {
+    return (this->phonenum);
+};
+
+const std::string&    Contact::get_darksecret() {
+    return (this->darksecret);
+};
