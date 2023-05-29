@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "Phonebook.hpp"
 
 void    Phonebook::set_num(int num)  {
@@ -41,14 +42,28 @@ void	Phonebook::add_contact() {
 	this->count++;
 }
 
-void	Phonebook::search() {
-	std::string	input;
+void Phonebook::displayContacts() {
+    // Encabezado de columnas
+    std::cout << std::right << std::setw(10) << "Index" << " | "
+              << std::setw(10) << "First name" << " | "
+              << std::setw(10) << "Last name" << " | "
+              << std::setw(10) << "Nickname" << std::endl;
 
-	std::cout << "Contact name: ";
-	std::getline(std::cin, input);	
-	for (int i = 0; i < 7; i++) {
-		if (this->contacts[i].get_firstname().compare(input) == 0) {
-			
-		}
-	}
+    // Línea separadora
+    std::cout << std::string(44, '-') << std::endl;
+
+    // Mostrar los contactos
+    for (size_t i = 0; i < this->count; i++) {
+        std::cout << std::right << std::setw(10) << i << " | "
+                  << std::setw(10) << std::left << (this->contacts[i].get_firstname().length() > 10 ? this->contacts[i].get_firstname().substr(0, 9) + '.' : this->contacts[i].get_firstname())
+                  << " | "
+                  << std::setw(10) << std::left << (this->contacts[i].get_lastname().length() > 10 ? this->contacts[i].get_lastname().substr(0, 9) + '.' : this->contacts[i].get_lastname())
+                  << " | "
+                  << std::setw(10) << std::left << (this->contacts[i].get_nickname().length() > 10 ? this->contacts[i].get_nickname().substr(0, 9) + '.' : this->contacts[i].get_nickname())
+                  << std::endl;
+    }
+}
+
+void	Phonebook::search() {
+	
 }
