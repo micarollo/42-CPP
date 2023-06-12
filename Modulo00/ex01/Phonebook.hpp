@@ -6,9 +6,9 @@ private:
     int     count;
 
 public:
-    void    Phonebook::set_num(int num);
-    int     Phonebook::get_num(void);
-    void	Phonebook::add_contact();
-    void    Phonebook::displayContacts();
-    void	Phonebook::search();
+    void    set_num(int num);
+    int     get_num(void);
+    void	add_contact();
+    void    displayContacts();
+    void	search();
 };

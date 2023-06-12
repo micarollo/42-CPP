@@ -10,5 +10,11 @@ int main() {
         std::getline(std::cin, input);
         if (input.compare("ADD") == 0)
             phonebook.add_contact();
+        else if (input.compare("SEARCH") == 0)
+            phonebook.add_contact();
+        else if (input.compare("EXIT") == 0)
+            return (0);
+        else
+            std::cout << "Wrong option" << std::endl;
     }
 }

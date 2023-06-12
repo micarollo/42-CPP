@@ -6,6 +6,7 @@ BINARY				= Phonebook
 # **************************************************************************** #
 SRCS				= Contact.cpp \
 					Phonebook.cpp \
+					main.cpp\
 
 OBJS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.o}}
 DEPS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.d}}

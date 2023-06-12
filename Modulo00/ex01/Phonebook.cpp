@@ -12,16 +12,9 @@ int    Phonebook::get_num(void)  {
 
 void	Phonebook::add_contact() {
 	std::string	input;
-	// Contact	NewContact;
 
-	// if (this->count == 8) {
-    //     for (int i = 0; i < 7; i++) {
-    //         this->contacts[i] = this->contacts[i + 1];
-    //     }
-    //     this->count--;
-    // }
 	if (this->count == 8)
-		this->count == 0; 
+		this->count = 0; 
 	std::cout << "First Name: ";
 	std::getline(std::cin, input);
 	this->contacts[count].set_firstname(input);
@@ -37,23 +30,16 @@ void	Phonebook::add_contact() {
 	std::cout << "Secret number: ";
 	std::getline(std::cin, input);
 	this->contacts[count].set_darksecret(input);
-
-	// this->contacts[this->count] = NewContact;
 	this->count++;
 }
 
 void Phonebook::displayContacts() {
-    // Encabezado de columnas
     std::cout << std::right << std::setw(10) << "Index" << " | "
               << std::setw(10) << "First name" << " | "
               << std::setw(10) << "Last name" << " | "
               << std::setw(10) << "Nickname" << std::endl;
-
-    // Línea separadora
     std::cout << std::string(44, '-') << std::endl;
-
-    // Mostrar los contactos
-    for (size_t i = 0; i < this->count; i++) {
+    for (int i = 0; i < this->count; i++) {
         std::cout << std::right << std::setw(10) << i << " | "
                   << std::setw(10) << std::left << (this->contacts[i].get_firstname().length() > 10 ? this->contacts[i].get_firstname().substr(0, 9) + '.' : this->contacts[i].get_firstname())
                   << " | "
@@ -65,5 +51,5 @@ void Phonebook::displayContacts() {
 }
 
 void	Phonebook::search() {
-	
+	std::cout << "Choose a num between 1 and 8 " << std::endl;
 }
