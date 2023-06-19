@@ -9,6 +9,6 @@ public:
     void    set_num(int num);
     int     get_num(void);
     void	add_contact();
-    void    displayContacts();
+    void    displayContacts(int i);
     void	search();
 };

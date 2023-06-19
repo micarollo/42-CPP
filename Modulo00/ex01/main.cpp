@@ -11,7 +11,7 @@ int main() {
         if (input.compare("ADD") == 0)
             phonebook.add_contact();
         else if (input.compare("SEARCH") == 0)
-            phonebook.add_contact();
+            phonebook.search();
         else if (input.compare("EXIT") == 0)
             return (0);
         else

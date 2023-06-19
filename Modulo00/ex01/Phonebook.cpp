@@ -33,13 +33,13 @@ void	Phonebook::add_contact() {
 	this->count++;
 }
 
-void Phonebook::displayContacts() {
+void Phonebook::displayContacts(int i) {
     std::cout << std::right << std::setw(10) << "Index" << " | "
               << std::setw(10) << "First name" << " | "
               << std::setw(10) << "Last name" << " | "
               << std::setw(10) << "Nickname" << std::endl;
     std::cout << std::string(44, '-') << std::endl;
-    for (int i = 0; i < this->count; i++) {
+    // for (int i = 0; i < this->count; i++) {
         std::cout << std::right << std::setw(10) << i << " | "
                   << std::setw(10) << std::left << (this->contacts[i].get_firstname().length() > 10 ? this->contacts[i].get_firstname().substr(0, 9) + '.' : this->contacts[i].get_firstname())
                   << " | "
@@ -47,9 +47,18 @@ void Phonebook::displayContacts() {
                   << " | "
                   << std::setw(10) << std::left << (this->contacts[i].get_nickname().length() > 10 ? this->contacts[i].get_nickname().substr(0, 9) + '.' : this->contacts[i].get_nickname())
                   << std::endl;
-    }
+    // }
 }
 
 void	Phonebook::search() {
+    std::string input;
+    int i;
+
 	std::cout << "Choose a num between 1 and 8 " << std::endl;
+    std::getline(std::cin, input);
+    i = std::stoi(input);
+    if (i >= 0 && i < 8)
+        displayContacts(i);
+    else
+        std::cout << "Wrong number" << std::endl;
 }
