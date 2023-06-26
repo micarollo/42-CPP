@@ -8,10 +8,15 @@ int main() {
     while (1) {
         std::cout << "Choose 1 option: ADD, SEARCH or EXIT" << std::endl;
         std::getline(std::cin, input);
-        if (input.compare("ADD") == 0)
+        if (!std::cin)
+            return (0);
+        else if (input.compare("ADD") == 0)
             phonebook.add_contact();
         else if (input.compare("SEARCH") == 0)
-            phonebook.search();
+        {
+            if (phonebook.search())
+                return (0);
+        }
         else if (input.compare("EXIT") == 0)
             return (0);
         else
