@@ -70,21 +70,6 @@ void Phonebook::displayContacts() {
     }
 }
 
-// void Phonebook::searchContact(int i) {
-//     std::cout << std::right << std::setw(10) << "Index" << " | "
-//                 << std::setw(10) << "First name" << " | "
-//                 << std::setw(10) << "Last name" << " | "
-//                 << std::setw(10) << "Nickname" << std::endl;
-//     std::cout << std::string(50, '-') << std::endl;
-//     std::cout << std::right << std::setw(10) << i + 1<< " | "
-//                 << std::setw(10) << std::left << (this->contacts[i].get_firstname().length() > 10 ? this->contacts[i].get_firstname().substr(0, 9) + '.' : this->contacts[i].get_firstname())
-//                 << " | "
-//                 << std::setw(10) << std::left << (this->contacts[i].get_lastname().length() > 10 ? this->contacts[i].get_lastname().substr(0, 9) + '.' : this->contacts[i].get_lastname())
-//                 << " | "
-//                 << std::setw(10) << std::left << (this->contacts[i].get_nickname().length() > 10 ? this->contacts[i].get_nickname().substr(0, 9) + '.' : this->contacts[i].get_nickname())
-//                 << std::endl;
-// }
-
 void Phonebook::searchContact(int i) {
     std::cout << "First name: " << this->contacts[i].get_firstname() << std::endl;
     std::cout << "Last name: " << this->contacts[i].get_lastname() << std::endl;
