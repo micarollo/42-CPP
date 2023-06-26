@@ -35,27 +35,11 @@ void	Phonebook::add_contact() {
 
 	if (this->count == 8)
 		this->count = 0; 
-	// std::cout << "First Name: ";
-	// // std::getline(std::cin, input);
-    // std::cin >> input;
-	// this->contacts[count].set_firstname(input);
     this->contacts[count].set_firstname(get_input("First name"));
     this->contacts[count].set_lastname(get_input("Last name"));
     this->contacts[count].set_nickname(get_input("Nickname"));
     this->contacts[count].set_phonenum(get_input("Phone number"));
     this->contacts[count].set_darksecret(get_input("Secret number"));
-	// std::cout << "Last Name: ";
-	// std::getline(std::cin, input);
-	// this->contacts[count].set_lastname(input);
-	// std::cout << "Nickname: ";
-	// std::getline(std::cin, input);
-	// this->contacts[count].set_nickname(input);
-	// std::cout << "Phone number: ";
-	// std::getline(std::cin, input);
-	// this->contacts[count].set_phonenum(input);
-	// std::cout << "Secret number: ";
-	// std::getline(std::cin, input);
-	// this->contacts[count].set_darksecret(input);
 	this->count++;
 }
 
