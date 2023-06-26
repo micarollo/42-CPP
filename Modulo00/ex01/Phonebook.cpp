@@ -1,5 +1,3 @@
-#include <iostream>
-#include <iomanip>
 #include "Phonebook.hpp"
 
 Phonebook::Phonebook(void) {
@@ -67,8 +65,8 @@ void	Phonebook::search() {
 	std::cout << "Choose a num between 1 and 8 " << std::endl;
     std::getline(std::cin, input);
     i = std::stoi(input);
-    if (i >= 0 && i < 8)
-        displayContacts(i);
+    if (i > 0 && i < 9)
+        displayContacts(i - 1);
     else
         std::cout << "Wrong number" << std::endl;
 }
