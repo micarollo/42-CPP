@@ -1,20 +1,18 @@
-#include <iostream>
-#include <string>
+#include "Zombie.hpp"
 
-class Zombie {
-    private:
-        std::string name;
+Zombie::Zombie(std::string name) {
+    this->name = name;
+    return ;
+}
 
-    public:
-        Zombie(std::string name) {
-            this->name = name;
-        }
+Zombie::~Zombie() {
+    std::cout << this->get_name() << " has been destroyed." << std::endl;
+}
 
-    void announce() {
-        std::cout << name << "BraiiiiiiinnnzzzZ..." << std::endl;
-    }
+const std::string& Zombie::get_name(){
+    return (this->name);
+}
 
-    ~Zombie() {
-      std::cout << name << " has been destroyed." << std::endl;
-    }
-};
+void Zombie::announce(void) {
+    std::cout << this->get_name() << "BraiiiiiiinnnzzzZ..." << std::endl;
+}
