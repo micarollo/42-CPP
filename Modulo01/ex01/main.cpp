@@ -1,14 +1,17 @@
 #include "Zombie.hpp"
 
-Zombie* newZombie( std::string name );
-void randomChump( std::string name );
+Zombie* zombieHorde( int N, std::string name );
 
 int main()
 {
-    Zombie *a;
+    Zombie *horde;
+    horde = zombieHorde(3, "Mica");
+    for (int i = 0; i < 3; i++)
+        horde->announce();
+    delete[] horde;
 
-    a = newZombie("Mica");
-    a->announce();
-    randomChump("rollo");
-    delete(a);
+    horde = zombieHorde(5, "aa");
+    for (int i = 0; i < 5; i++)
+        horde->announce();
+    delete[] horde;
 }

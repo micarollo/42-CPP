@@ -1,13 +1,12 @@
 # NAME
 # **************************************************************************** #
-BINARY				= Zombie
+BINARY				= horde
 
 # FILES
 # **************************************************************************** #
-SRCS				= newZombie.cpp \
-					random.Chump.cpp \
-					Zombie.cpp\
+SRCS				= Zombie.cpp\
 					main.cpp \
+					zombieHorde.cpp \
 
 OBJS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.o}}
 DEPS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.d}}
