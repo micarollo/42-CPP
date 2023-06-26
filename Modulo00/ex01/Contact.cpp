@@ -1,6 +1,14 @@
 #include <iostream>
 #include "Contact.hpp"
 
+Contact::Contact(void) {
+    return ;
+}
+
+Contact::~Contact(void) {
+    return ;
+}
+
 void    Contact::set_firstname(std::string firstName)  {
     this->firstname = firstName;
 };

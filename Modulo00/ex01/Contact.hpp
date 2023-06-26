@@ -9,6 +9,8 @@ private:
     std::string darksecret;
 
 public:
+    Contact (void);
+    ~Contact (void);
     void				set_firstname(std::string firstName);
     void				set_lastname(std::string lastName);
     void				set_nickname(std::string nickName);

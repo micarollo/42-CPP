@@ -6,6 +6,8 @@ private:
     int     count;
 
 public:
+    Phonebook (void);
+    ~Phonebook (void);
     void    set_num(int num);
     int     get_num(void);
     void	add_contact();
