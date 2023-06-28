@@ -5,6 +5,7 @@ BINARY				= Harl
 # FILES
 # **************************************************************************** #
 SRCS				= main.cpp \
+					Harl.cpp \
 
 OBJS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.o}}
 DEPS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.d}}
