@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 {
     Harl ha;
 
-    if (argc > 2)
+    if (argc == 1 || argc > 2)
     {
         std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
         return (0);
@@ -27,10 +27,13 @@ int main(int argc, char *argv[])
         {
             case 0:
                 ha.complain("DEBUG");
+                break;
             case 1:
                 ha.complain("INFO");
+                break;
             case 2:
                 ha.complain("WARNING");
+                break;
             case 3:
                 ha.complain("ERROR");
                 break ;

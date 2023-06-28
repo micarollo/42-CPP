@@ -35,7 +35,9 @@ void Harl::complain (std::string level) {
     for (int i = 0; i < 4; i++)
     {
         if (options[i] == level)
-            (this->*ptr[i])();
+        {
+            for(; i < 4; i++)
+                (this->*ptr[i])();
+        }
     }
-    
 }
