@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
         filename = argv[1];
         s1 = argv[2];
         s2 = argv[3];
-        std::ifstream input(filename);
+        std::ifdcstream input(filename);
         if (!input)
         {
             std::cerr << "Invalid filename" << std::endl;
