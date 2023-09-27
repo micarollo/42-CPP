@@ -10,7 +10,7 @@ int main()
         horde->announce();
     delete[] horde;
 
-    horde = zombieHorde(5, "aa");
+    horde = zombieHorde(5, "rollo");
     for (int i = 0; i < 5; i++)
         horde->announce();
     delete[] horde;

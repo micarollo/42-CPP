@@ -10,4 +10,5 @@ int main(void)
     ha.complain("WARNING");
     ha.complain("ERROR");
     ha.complain("ERROR");
+    ha.complain("rollo");
 }
