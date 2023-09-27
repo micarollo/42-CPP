@@ -1,12 +1,17 @@
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap(void)
+{
+    std::cout << "ClapTrap default constructor called" << std::endl;
+}
+
 ClapTrap::ClapTrap(std::string name) : _name(name), _hit(10), _energy(10), _attack(0) {
-    std::cout << "Constructor called" << std::endl;
+    std::cout << "ClapTrap constructor called" << std::endl;
     return ;
 }
 
 ClapTrap::~ClapTrap(void) {
-    std::cout << "Destructor called" << std::endl;
+    std::cout << "ClapTrap destructor called" << std::endl;
     return ;
 }
 

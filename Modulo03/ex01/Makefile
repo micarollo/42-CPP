@@ -1,11 +1,12 @@
 # NAME
 # **************************************************************************** #
-BINARY				= ClapTrap
+BINARY				= ScavTrap
 
 # FILES
 # **************************************************************************** #
 SRCS				= main.cpp \
 					ClapTrap.cpp \
+					ScavTrap.cpp
 
 OBJS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.o}}
 DEPS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.d}}
