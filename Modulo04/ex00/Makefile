@@ -8,6 +8,8 @@ SRCS				= main.cpp \
 					Animal.cpp \
 					Dog.cpp \
 					Cat.cpp \
+					WrongAnimal.cpp \
+					WrongCat.cpp
 
 OBJS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.o}}
 DEPS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.d}}

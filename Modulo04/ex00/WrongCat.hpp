@@ -1,17 +1,17 @@
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef WRONGCAT_HPP
+#define WRONGCAT_HPP
 
 #include <iostream>
 #include <string.h>
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
-class WrongCat : public Animal
+class WrongCat : public WrongAnimal
 {
     public:
         WrongCat(void);
         WrongCat(const WrongCat &cp);
         ~WrongCat();
-        WrongCat &operator=(const WrongCat &cat);
+        WrongCat &operator=(const WrongCat &wrongcat);
         void makeSound(void) const;
 };
 

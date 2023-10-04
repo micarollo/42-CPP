@@ -1,5 +1,5 @@
-#ifndef WRONGWrongANIMAL_HPP
-#define WRONGWrongANIMAL_HPP
+#ifndef WRONGANIMAL_HPP
+#define WRONGANIMAL_HPP
 
 #include <iostream>
 #include <string.h>
