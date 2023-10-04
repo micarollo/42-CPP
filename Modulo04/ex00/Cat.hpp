@@ -12,7 +12,7 @@ class Cat : public Animal
         Cat(const Cat &cp);
         ~Cat();
         Cat &operator=(const Cat &cat);
-        void makeSound(void);
+        void makeSound(void) const;
 };
 
 #endif
