@@ -28,6 +28,16 @@ class Fixed {
         Fixed operator*(const Fixed&fixed) const;
         Fixed operator/(const Fixed&fixed) const;
 
+        Fixed &operator++(void);
+        Fixed operator++(int);
+        Fixed &operator--(void);
+        Fixed operator--(int);
+
+        static Fixed &min(Fixed &fix1, Fixed &fix2);
+        static Fixed &max(Fixed &fix1, Fixed &fix2);
+        static const Fixed &min(const Fixed &fix1, const Fixed &fix2);
+        static const Fixed &max(const Fixed &fix1, const Fixed &fix2);
+
         int getRawBits(void) const;
         void setRawBits(const int raw);
         float toFloat(void) const;
