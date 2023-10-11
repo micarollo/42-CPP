@@ -1,11 +1,17 @@
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main(void)
 {
-    ClapTrap    clap1("ClapOne");
-    ClapTrap    clap2("ClapTwo");
+    FragTrap fragtrap("frag1");
+    ScavTrap scavtrap("scav1");
 
-    clap1.attack("ClapTwo");
-    clap2.takeDamage(10);
-    clap2.beRepaired(30);
+    scavtrap.attack("human");
+    scavtrap.guardGate();
+    fragtrap.attack("another human");
+    fragtrap.highFiveGuys();
+    fragtrap.takeDamage(30);
+    fragtrap.beRepaired(30);
+    fragtrap.takeDamage(60);    
 }

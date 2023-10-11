@@ -14,13 +14,15 @@ protected:
 
 public:
     ClapTrap(std::string name);
-    ~ClapTrap(void);
+    virtual ~ClapTrap(void);
     ClapTrap(ClapTrap const &cp);
     ClapTrap &	operator=( ClapTrap const & claptrap );
+    
     std::string	getName( void ) const;
 	int			getHit( void ) const;
 	int			getEnergy( void ) const;
 	int			getAttack( void ) const;
+    
     virtual void attack(const std::string& target);
     void takeDamage(unsigned int amount);
     void beRepaired(unsigned int amount);
