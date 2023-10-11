@@ -31,6 +31,7 @@ ScavTrap &ScavTrap::operator=(ScavTrap const &scavtrap)
 	this->_hit = scavtrap.getHit();
 	this->_energy = scavtrap.getEnergy();
 	this->_attack = scavtrap.getAttack();
+    return (*this);
 }
 
 void ScavTrap::attack(const std::string &target) {

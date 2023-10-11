@@ -42,3 +42,8 @@ void DiamondTrap::attack(const std::string &target) {
         this->_energy--;
     }
 }
+
+void DiamondTrap::whoAmI()
+{
+    std::cout << "my name is: " << _name << std::endl;
+}
