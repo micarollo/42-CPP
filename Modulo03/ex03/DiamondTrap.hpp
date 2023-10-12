@@ -10,9 +10,9 @@ class DiamondTrap : public ScavTrap, public FragTrap
 {
     private:
         std::string _name;
+        DiamondTrap(void);
 
     public:
-        DiamondTrap(void);
         DiamondTrap(std::string name);
         DiamondTrap(DiamondTrap const & cp);
         ~DiamondTrap(void);
