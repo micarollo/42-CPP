@@ -23,6 +23,7 @@ ClapTrap &ClapTrap::operator=(ClapTrap const &claptrap)
 	this->_hit = claptrap.getHit();
 	this->_energy = claptrap.getEnergy();
 	this->_attack = claptrap.getAttack();
+    return (*this);
 }
 
 std::string ClapTrap::getName(void) const
