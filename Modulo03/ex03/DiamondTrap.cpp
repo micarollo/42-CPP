@@ -5,7 +5,7 @@ DiamondTrap::DiamondTrap(void)
     std::cout << "DiamondTrap default constructor called" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(std::string name)
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name")
 {
     this->_name = name;
     this->_hit = 100;
@@ -27,23 +27,26 @@ DiamondTrap::~DiamondTrap(void) {
 
 DiamondTrap &DiamondTrap::operator=(DiamondTrap const &diamondtrapp)
 {
-    this->_name = diamondtrapp.getName();
-    this->ClapTrap::_name = diamondtrapp.getName() + "_clap_name";
+    this->_name = diamondtrapp.getDiamondName();
+    this->ClapTrap::_name = diamondtrapp.getName();
 	this->_hit = diamondtrapp.getHit();
 	this->_energy = diamondtrapp.getEnergy();
 	this->_attack = diamondtrapp.getAttack();
     return (*this);
 }
 
-void DiamondTrap::attack(const std::string &target) {
-    if (this->_energy > 0)
-    {
-        std::cout << "DiamondTrap " << this->_name << " attacks " << target << ", causing " << this->_hit << " points of damage." << std::endl;
-        this->_energy--;
-    }
+void DiamondTrap::attack(const std::string &target) 
+{
+    this->ScavTrap::attack(target);
 }
 
 void DiamondTrap::whoAmI()
 {
-    std::cout << "my name is: " << _name << std::endl;
+    std::cout << "my name is: " << this->_name << std::endl;
+    std::cout << "my name is: " << ClapTrap::_name << std::endl;
+}
+
+std::string DiamondTrap::getDiamondName(void) const
+{
+    return (this->_name);
 }

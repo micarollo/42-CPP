@@ -1,11 +1,14 @@
-#include "ClapTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main(void)
 {
-    ClapTrap    clap1("ClapOne");
-    ClapTrap    clap2("ClapTwo");
-
-    clap1.attack("ClapTwo");
-    clap2.takeDamage(10);
-    clap2.beRepaired(30);
+    DiamondTrap d2("d2");
+    DiamondTrap d3("d3");
+    
+    d2.whoAmI();
+    
+    d2 = d3;
+    
+    d2.whoAmI();
+    d3.whoAmI();
 }
