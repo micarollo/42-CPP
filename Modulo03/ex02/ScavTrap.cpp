@@ -7,6 +7,7 @@ ScavTrap::ScavTrap(void)
 
 ScavTrap::ScavTrap(std::string name)
 {
+    std::cout << "ScavTrap constructor called" << std::endl;
     this->_name = name;
     this->_hit = 100;
     this->_energy = 50;

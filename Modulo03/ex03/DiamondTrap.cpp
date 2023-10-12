@@ -7,6 +7,7 @@ DiamondTrap::DiamondTrap(void)
 
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name")
 {
+    std::cout << "DiamondTrap constructor called" << std::endl;
     this->_name = name;
     this->_hit = 100;
     this->_energy = 50;

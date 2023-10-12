@@ -7,6 +7,7 @@ FragTrap::FragTrap(void)
 
 FragTrap::FragTrap(std::string name)
 {
+    std::cout << "FragTrap constructor called" << std::endl;
     this->_name = name;
     this->_hit = 100;
     this->_energy = 100;
