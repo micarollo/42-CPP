@@ -2,7 +2,7 @@
 
 Cat::Cat(void)
 {
-    this->type = "Cat";
+    this->_type = "Cat";
     std::cout << "Cat constructor called" << std::endl;
 }
 
@@ -13,13 +13,13 @@ Cat::~Cat(void)
 
 Cat::Cat(const Cat &cp)
 {
-    this->type = cp.type;
     std::cout << "Cat copy constructor called" << std::endl;
+    *this = cp;
 }
 
 Cat &Cat::operator=(Cat const &cat)
 {
-    this->type = cat.type;
+    this->_type = cat._type;
     return (*this);
 }
 
