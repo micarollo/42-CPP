@@ -2,7 +2,11 @@
 
 WrongAnimal::WrongAnimal(void)
 {
-    this->type = "WrongAnimal";
+    std::cout << "WrongAnimal constructor called" << std::endl;
+}
+
+WrongAnimal::WrongAnimal(std::string type) : _type(type)
+{
     std::cout << "WrongAnimal constructor called" << std::endl;
 }
 
@@ -13,19 +17,19 @@ WrongAnimal::~WrongAnimal(void)
 
 WrongAnimal::WrongAnimal(const WrongAnimal &cp)
 {
-    this->type = cp.type;
+    this->_type = cp._type;
     std::cout << "WrongAnimal copy constructor called" << std::endl;
 }
 
 WrongAnimal &WrongAnimal::operator=(WrongAnimal const &wronganimal)
 {
-    this->type = wronganimal.type;
+    this->_type = wronganimal._type;
     return (*this);
 }
 
 std::string WrongAnimal::getType(void) const
 {
-    return (this->type);
+    return (this->_type);
 }
 
 void WrongAnimal::makeSound(void) const
