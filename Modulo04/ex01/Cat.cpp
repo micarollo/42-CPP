@@ -1,8 +1,8 @@
 #include "Cat.hpp"
 
-Cat::Cat(void)
+Cat::Cat(void) : Animal("Cat")
 {
-    this->type = "Cat";
+    // this->_type = "Cat";
     std::cout << "Cat constructor called" << std::endl;
 }
 
@@ -11,15 +11,15 @@ Cat::~Cat(void)
     std::cout << "Cat destructor called" << std::endl;
 }
 
-Cat::Cat(const Cat &cp)
+Cat::Cat(const Cat &cp) : Animal(cp._type)
 {
-    this->type = cp.type;
     std::cout << "Cat copy constructor called" << std::endl;
+    *this = cp;
 }
 
 Cat &Cat::operator=(Cat const &cat)
 {
-    this->type = cat.type;
+    this->_type = cat._type;
     return (*this);
 }
 
