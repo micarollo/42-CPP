@@ -4,16 +4,19 @@ Cat::Cat(void) : Animal("Cat")
 {
     // this->_type = "Cat";
     std::cout << "Cat constructor called" << std::endl;
+    this->_brain = new Brain();
 }
 
 Cat::~Cat(void)
 {
     std::cout << "Cat destructor called" << std::endl;
+    delete this->_brain;
 }
 
 Cat::Cat(const Cat &cp) : Animal(cp._type)
 {
     std::cout << "Cat copy constructor called" << std::endl;
+    this->_brain = new Brain();
     *this = cp;
 }
 
