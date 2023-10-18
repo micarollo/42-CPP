@@ -36,3 +36,10 @@ std::string Brain::getIdeas(int i) const
     else
         return ("");
 }
+
+void Brain::setIdeas(int i, std::string idea)
+{
+    if (i >= 0 && i <= 99)
+        this->_ideas[i] = idea;
+    return ;
+}

@@ -14,6 +14,7 @@ class Cat : public Animal
         ~Cat();
         Cat &operator=(const Cat &cat);
         virtual void makeSound(void) const;
+        Brain & getBrain(void) const;
     
     private:
         Brain * _brain;
