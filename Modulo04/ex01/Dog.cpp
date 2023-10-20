@@ -24,6 +24,7 @@ Dog::Dog(Dog const &cp) : Animal(cp._type)
 Dog &Dog::operator=(Dog const &dog)
 {
     this->_type = dog._type;
+    *this->_brain = *dog._brain;
     return (*this);
 }
 

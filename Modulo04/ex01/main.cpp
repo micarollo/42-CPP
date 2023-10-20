@@ -26,4 +26,13 @@ int main()
    {
     delete animals[i];
    }
+
+
+    Cat *cat = new Cat();
+    std::cout << "ADD ONE THOUGHT" << std::endl;
+	cat->getBrain().setIdeas(1, "pensamiento 1");
+    Cat *cat2 = new Cat(*cat);
+    cat->getBrain().setIdeas(1, "solo cambio yo");
+    std::cout << cat->getBrain().getIdeas(1) << std::endl;
+    std::cout << cat2->getBrain().getIdeas(1) << std::endl;
 }

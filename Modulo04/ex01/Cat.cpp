@@ -23,6 +23,7 @@ Cat::Cat(const Cat &cp) : Animal(cp._type)
 Cat &Cat::operator=(Cat const &cat)
 {
     this->_type = cat._type;
+    *this->_brain = *cat._brain;
     return (*this);
 }
 
