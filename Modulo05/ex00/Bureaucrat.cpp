@@ -26,7 +26,11 @@ Bureaucrat::~Bureaucrat(void)
 }
 
 //operador
-
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &bureaucrat)
+{
+    this->_range = bureaucrat._range;
+    return (*this);
+}
 
 //getters
 std::string Bureaucrat::getName(void) const
@@ -63,4 +67,10 @@ const char *	Bureaucrat::GradeTooHighException::what() const throw()
 const char *	Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return ("Bureaucrat exception: Grade too low");
+}
+
+std::ostream	&operator<<(std::ostream &o, const Bureaucrat &bureaucrat)
+{
+	o << "name: " << bureaucrat.getName() << ", grade: " << bureaucrat.getGrade();
+	return (o);
 }
