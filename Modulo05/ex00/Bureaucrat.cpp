@@ -8,6 +8,10 @@ Bureaucrat::Bureaucrat(void)
 Bureaucrat::Bureaucrat(std::string name, int range) : _name(name), _range(range)
 {
     std::cout << "Constructor called" << std::endl;
+    if (this->_range > 150)
+        throw Bureaucrat::GradeTooLowException();
+    if (this->_range < 1)
+        throw Bureaucrat::GradeTooHighException();
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &cp)
@@ -49,4 +53,14 @@ void Bureaucrat::decreaseGrade(void)
         this->_range++;
     else
         std::cout << "Error" << std::endl; //corregir
+}
+
+const char *	Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return ("Bureaucrat exception: Grade too high");
+}
+
+const char *	Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return ("Bureaucrat exception: Grade too low");
 }
