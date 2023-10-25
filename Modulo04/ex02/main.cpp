@@ -1,10 +1,10 @@
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 
 int main()
 {
-   Animal *animals[6];
+   AAnimal *animals[6];
 
     //crear array
    for (int i = 0; i < 6; i++)
@@ -27,7 +27,7 @@ int main()
     delete animals[i];
    }
 
-
+    std::cout << "" << std::endl;
     Cat *cat = new Cat();
     std::cout << "ADD ONE THOUGHT" << std::endl;
 	cat->getBrain().setIdeas(1, "pensamiento 1");
