@@ -52,5 +52,26 @@ bool Form::getIsSigned(void) const
 
 void Form::beSigned(Bureaucrat &bure)
 {
-    if (bure.getGrade() > )
+    if (bure.getGrade() > this->_gradeToSign)
+        throw GradeTooLowException();
+    else
+        this->_isSigned = true;
+}
+
+const char * Form::GradeTooHighException::what() const throw()
+{
+    return ("Grade too high");
+}
+
+const char * Form::GradeTooLowException::what() const throw()
+{
+    return ("Grade too low");
+}
+
+std::ostream &operator<<(std::ostream &o, Form const &form)
+{
+    o << "Name: " << form.getName() << std::endl;
+    o << "Its signed: " << form.getIsSigned() << std::endl;
+    o << "Grade require to sign: " << form.getGradeToSign() << std::endl;
+    o << "Grade require to execute: " << form.getGradeToExect() << std::endl;
 }
