@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(void)
 {
@@ -73,4 +74,11 @@ std::ostream	&operator<<(std::ostream &o, const Bureaucrat &bureaucrat)
 {
 	o << "name: " << bureaucrat.getName() << ", grade: " << bureaucrat.getGrade();
 	return (o);
+}
+
+void Bureaucrat::signForm(Form &form)
+{
+    if (form.getIsSigned() == true)
+        std::cout << this->_name << " signed " << form.getName() << std::endl;
+    
 }
