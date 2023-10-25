@@ -2,7 +2,6 @@
 
 Dog::Dog(void) : Animal("Dog")
 {
-    // this->type = "Dog";
     std::cout << "Dog constructor called" << std::endl;
 }
 

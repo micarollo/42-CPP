@@ -2,7 +2,6 @@
 
 Cat::Cat(void) : Animal("Cat")
 {
-    // this->_type = "Cat";
     std::cout << "Cat constructor called" << std::endl;
     this->_brain = new Brain();
 }
