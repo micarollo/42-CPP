@@ -1,6 +1,11 @@
 #include "Form.hpp"
 
-Form::Form(std::string const name, const int gradeSig, const int gradeExec) : _name(name), _gradeToSign(gradeSig), _gradeToExec(gradeExec)
+Form::Form() : _name(""), _isSigned(0), _gradeToExec(0), _gradeToSign(0)
+{
+    std::cout << "Default constructor called" << std::endl;
+}
+
+Form::Form(std::string const name, const int gradeSig, const int gradeExec) : _name(name), _gradeToSign(gradeSig), _gradeToExec(gradeExec), _isSigned(0)
 {
     std::cout << "Form Constructor called" << std::endl;
     if (gradeSig < 1 || gradeExec < 1)
@@ -18,4 +23,34 @@ Form::~Form(void)
 Form::Form(Form const &cp) : _name(cp._name), _gradeToExec(cp._gradeToExec), _gradeToSign(cp._gradeToSign)
 {
     std::cout << "Form copy constructor called" << std::endl;
+}
+
+Form & Form::operator=(Form const &form)
+{
+    return (*this);
+}
+
+std::string const & Form::getName(void) const
+{
+    return (this->_name);
+}
+
+int Form::getGradeToSign(void) const
+{
+    return (this->_gradeToSign);    
+}
+
+int Form::getGradeToExect(void) const
+{
+    return (this->_gradeToExec);
+}
+
+bool Form::getIsSigned(void) const
+{
+    return (this->_isSigned);
+}
+
+void Form::beSigned(Bureaucrat &bure)
+{
+    if (bure.getGrade() > )
 }
