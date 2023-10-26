@@ -1,11 +1,12 @@
 # NAME
 # **************************************************************************** #
-BINARY				= Bureaucrat
+BINARY				= Form
 
 # FILES
 # **************************************************************************** #
 SRCS				= main.cpp \
 					Bureaucrat.cpp \
+					Form.cpp
 
 
 OBJS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.o}}
@@ -21,7 +22,7 @@ SRCS_DIR			=
 LINK				= c++
 CC					= c++ -c
 DEPFLAGS			= -MMD -MP
-CFLAGS				= -Wall -Wextra -Werror 
+CFLAGS				= -Wall -Wextra -Werror -std=c++98
 RM					= rm -rf
 
 # RULES
