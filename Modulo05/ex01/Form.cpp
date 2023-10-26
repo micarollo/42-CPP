@@ -1,11 +1,11 @@
 #include "Form.hpp"
 
-Form::Form() : _name(""), _isSigned(0), _gradeToExec(0), _gradeToSign(0)
+Form::Form() : _name(""), _isSigned(false), _gradeToExec(0), _gradeToSign(0) 
 {
     std::cout << "Default constructor called" << std::endl;
 }
 
-Form::Form(std::string const name, const int gradeSig, const int gradeExec) : _name(name), _gradeToSign(gradeSig), _gradeToExec(gradeExec), _isSigned(0)
+Form::Form(std::string const name, const int gradeSig, const int gradeExec) : _name(name), _isSigned(false), _gradeToExec(gradeExec), _gradeToSign(gradeSig)
 {
     std::cout << "Form Constructor called" << std::endl;
     if (gradeSig < 1 || gradeExec < 1)
@@ -27,6 +27,7 @@ Form::Form(Form const &cp) : _name(cp._name), _gradeToExec(cp._gradeToExec), _gr
 
 Form & Form::operator=(Form const &form)
 {
+    (void)form;
     return (*this);
 }
 
@@ -74,4 +75,5 @@ std::ostream &operator<<(std::ostream &o, Form const &form)
     o << "Its signed: " << form.getIsSigned() << std::endl;
     o << "Grade require to sign: " << form.getGradeToSign() << std::endl;
     o << "Grade require to execute: " << form.getGradeToExect() << std::endl;
+    return (o);
 }
