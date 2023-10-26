@@ -26,14 +26,12 @@ Bureaucrat::~Bureaucrat(void)
     std::cout << "Default destructor called" << std::endl;
 }
 
-//operador
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &bureaucrat)
 {
     this->_range = bureaucrat._range;
     return (*this);
 }
 
-//getters
 std::string Bureaucrat::getName(void) const
 {
     return (this->_name);
@@ -49,7 +47,7 @@ void Bureaucrat::increaseGrade(void)
     if (this->_range - 1 > 1)
         this->_range--;
     else
-        std::cout << "Error" << std::endl; //corregir
+        throw GradeTooHighException();
 }
 
 void Bureaucrat::decreaseGrade(void)
@@ -57,7 +55,7 @@ void Bureaucrat::decreaseGrade(void)
     if (this->_range + 1 < 150)
         this->_range++;
     else
-        std::cout << "Error" << std::endl; //corregir
+        throw GradeTooLowException();
 }
 
 const char *	Bureaucrat::GradeTooHighException::what() const throw()
@@ -78,7 +76,13 @@ std::ostream	&operator<<(std::ostream &o, const Bureaucrat &bureaucrat)
 
 void Bureaucrat::signForm(Form &form)
 {
-    if (form.getIsSigned() == true)
+    try
+    {
+        form.beSigned(*this);
         std::cout << this->_name << " signed " << form.getName() << std::endl;
-    
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << this->getName() << " couldnt sign " << form.getName() << " because " << e.what() << std::endl;
+    }
 }
