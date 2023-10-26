@@ -6,8 +6,10 @@ BINARY				= Form
 # **************************************************************************** #
 SRCS				= main.cpp \
 					Bureaucrat.cpp \
-					Form.cpp
-
+					Form.cpp \
+					PresidentialPardonForm.cpp \
+					RobotomyRequestForm.cpp \
+					ShrubberyCreationForm \
 
 OBJS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.o}}
 DEPS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.d}}
