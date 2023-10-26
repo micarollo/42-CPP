@@ -34,6 +34,18 @@ class AForm
             virtual const char *	what() const throw();
         };
 
+        class	NotSignedException : public std::exception
+        {
+        public:
+            virtual const char *	what() const throw();
+        };
+
+        class	FileException : public std::exception
+        {
+        public:
+            virtual const char *	what() const throw();
+        };
+
     private:
         std::string const _name;
         bool _isSigned;
