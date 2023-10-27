@@ -1,6 +1,6 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(void)
+ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("ShrubberyCreationForm", 145, 137), _target("")
 {
     std::cout << "Default constructor called" << std::endl;
 }
@@ -38,8 +38,8 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
     if (executor.getGrade() > this->getGradeToExect())
         throw GradeTooLowException();
     std::ofstream file(_target + "_shrubbery");
-    // if (!file.is_open())
-	// 	throw FileException();
+    if (!file.is_open())
+		throw FileException();
     file << "	                                               .    " << std::endl;
 	file << "                                     .         ;       " << std::endl;
 	file << "        .              .              ;%     ;;        " << std::endl;
