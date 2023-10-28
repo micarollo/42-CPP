@@ -37,7 +37,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
         throw NotSignedException();
     if (executor.getGrade() > this->getGradeToExect())
         throw GradeTooLowException();
-    std::ofstream file(_target + "_shrubbery");
+    std::ofstream file((_target + "_shrubbery").c_str());
     if (!file.is_open())
 		throw FileException();
     file << "	                                               .    " << std::endl;
