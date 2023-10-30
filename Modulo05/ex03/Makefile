@@ -1,6 +1,6 @@
 # NAME
 # **************************************************************************** #
-BINARY				= Form
+BINARY				= Intern
 
 # FILES
 # **************************************************************************** #
@@ -10,6 +10,7 @@ SRCS				= main.cpp \
 					PresidentialPardonForm.cpp \
 					RobotomyRequestForm.cpp \
 					ShrubberyCreationForm \
+					Intern.cpp
 
 OBJS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.o}}
 DEPS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.d}}
