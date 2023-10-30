@@ -13,15 +13,15 @@ public:
         delete[] this->_ar;
     }
 
-    Array<T>(unsigned int n)
+    Array<T>(unsigned int n) : _size(n)
     {
-        _ar = new T[size];
+        _ar = new T[n];
     }
 
     Array<T>(Array<T> const &cp) : _size(cp._size)
     {
         _ar = new T[_size];
-        for (unsigned int i = 0; i  < size; i++)
+        for (unsigned int i = 0; i  < _size; i++)
             _ar[i] = cp._ar[i];
     }
 
@@ -29,9 +29,10 @@ public:
     {
         if (&src == this)
             return (*this);
-        _size = src._size;
-        _ar = new T[src._size];
-        for (unsigned int n = 0; n < _size; i++)
+        delete[] _ar;
+        _size = src.size();
+        _ar = new T[_size];
+        for (unsigned int i = 0; i < _size; i++)
             _ar[i] = src._ar[i];
         return (*this);
     }
@@ -39,8 +40,22 @@ public:
     T &operator[](const int i) const
     {
         if (i < 0 || static_cast<unsigned int>(i) >= _size)
-            throw std::exeption()::what();
+            throw OutOfRange();
         return (_ar[i]);
+    }
+
+    class	OutOfRange : public std::exception
+	{
+	public:
+		virtual const char *	what() const throw()
+        {
+            return ("Array index out of range");
+        }
+	};
+
+    size_t size(void) const
+    {
+        return (this->_size);
     }
 
 
