@@ -31,6 +31,15 @@ void Span::addNumber(int n)
 	_arr.push_back(n);
 }
 
+void Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+    while (begin != end) 
+    {
+        addNumber(*begin);
+        ++begin;
+    }
+}
+
 int Span::shortestSpan() const
 {
     if (_arr.size() < 2)
