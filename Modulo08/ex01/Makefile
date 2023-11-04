@@ -1,10 +1,11 @@
 # NAME
 # **************************************************************************** #
-BINARY				= easyfind
+BINARY				= span
 
 # FILES
 # **************************************************************************** #
 SRCS				= main.cpp \
+					Span.cpp
 
 OBJS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.o}}
 DEPS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.d}}
