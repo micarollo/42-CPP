@@ -9,7 +9,11 @@ class MutantStack : public std::stack<T>
 {
 public:
     MutantStack(void) {}
-    MutantStack(MutantStack const &cp) {*this = cp}
+    MutantStack(MutantStack const &cp) : std::stack<int>(cp)
+    {
+        *this = cp;
+        return ;
+    }
     ~MutantStack(void) {}
 
     MutantStack & operator=( MutantStack const & rhs )
