@@ -1,5 +1,5 @@
 #ifndef INTERN_HPP
-#define INTER_HPP
+#define INTERN_HPP
 
 # include "AForm.hpp"
 # include "ShrubberyCreationForm.hpp"

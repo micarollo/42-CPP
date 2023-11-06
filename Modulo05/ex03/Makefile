@@ -6,10 +6,10 @@ BINARY				= Intern
 # **************************************************************************** #
 SRCS				= main.cpp \
 					Bureaucrat.cpp \
-					Form.cpp \
+					AForm.cpp \
 					PresidentialPardonForm.cpp \
 					RobotomyRequestForm.cpp \
-					ShrubberyCreationForm \
+					ShrubberyCreationForm.cpp \
 					Intern.cpp
 
 OBJS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.o}}
@@ -43,7 +43,7 @@ clean:
 					@$(RM) $(OBJS_DIR)
 
 fclean: clean
-					@$(RM) $(BINARY)
+					@$(RM) $(BINARY) Shrubbery_shrubbery
 
 re: fclean all
 

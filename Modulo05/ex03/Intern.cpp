@@ -13,6 +13,7 @@ Intern::~Intern(void)
 Intern::Intern(Intern const &cp)
 {
     std::cout << "Constructor called" << std::endl;
+    *this = cp;
 }
 
 Intern & Intern::operator=(Intern const & intern)
