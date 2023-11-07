@@ -23,7 +23,7 @@ SRCS_DIR			=
 LINK				= c++
 CC					= c++ -c
 DEPFLAGS			= -MMD -MP
-CFLAGS				= -Wall -Wextra -Werror 
+CFLAGS				= -Wall -Wextra -Werror -Wshadow -Wno-shadow 
 RM					= rm -rf
 
 # RULES
