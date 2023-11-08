@@ -2,17 +2,17 @@
 
 Intern::Intern(void)
 {
-    std::cout << "Default constructor called" << std::endl;
+    // std::cout << "Default constructor called" << std::endl;
 }
 
 Intern::~Intern(void)
 {
-    std::cout << "Default destructor called" << std::endl;
+    // std::cout << "Default destructor called" << std::endl;
 }
 
 Intern::Intern(Intern const &cp)
 {
-    std::cout << "Constructor called" << std::endl;
+    // std::cout << "Constructor called" << std::endl;
     *this = cp;
 }
 
@@ -34,7 +34,7 @@ AForm* Intern::makeForm(std::string name, std::string target)
         if (forms[i]->getName() == name)
         {
             std::cout << "Intern creates " << name << std::endl;
-            return(forms[i]);
+            return(forms[i]->getCopy());
         }
     }
     return (NULL);

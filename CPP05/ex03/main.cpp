@@ -3,28 +3,71 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "AForm.hpp"
+#include "Intern.hpp"
 
 int main()
 {
-    try {
-        Bureaucrat bureaucrat("ash", 2); // error with 200
-        ShrubberyCreationForm form1("Shrubbery");
-        RobotomyRequestForm form2("Robotomy");
-        PresidentialPardonForm form3("President");
-        std::cout << "\n--------------- Form 1 ( Shrubbery ) ---------------" << std::endl;
-        bureaucrat.signForm(form1);
-        bureaucrat.executeForm(form1);
-        std::cout << "\n--------------- Form 2 ( Robotomy ) ---------------" << std::endl;
-        bureaucrat.signForm(form2);
-        bureaucrat.executeForm(form2);
-        bureaucrat.executeForm(form2);
-        bureaucrat.executeForm(form2);
-        bureaucrat.executeForm(form2);
-        std::cout << "\n--------------- Form 3 ( President ) ---------------" << std::endl;
-        bureaucrat.signForm(form3);
-        bureaucrat.executeForm(form3);
-    } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-    }
+    std::cout << std::endl << "1. Intern creates a shrubbery creation form" << std::endl;
+		try
+		{
+			Intern	SH;
+			AForm *	form;
+
+			form = SH.makeForm("ShrubberyCreationForm", "Pedro");
+            std::cout << *form << std::endl;
+            std::cout << form << std::endl;
+		}
+		catch(std::exception &e)
+		{
+			std::cout << "Exception caught: " << e.what() << std::endl;
+		}
+	std::cout << std::endl << "--------------------------------------------------------------------" << std::endl;
+
+	std::cout << std::endl << "2. Intern creates a robotomy request" << std::endl;
+		try
+		{
+			Intern	RB;
+			AForm *	form;
+
+			form = RB.makeForm("RobotomyRequestForm", "Pedro");
+			std::cout << *form << std::endl;
+            std::cout << form << std::endl;
+		}
+		catch(std::exception &e)
+		{
+			std::cout << "Exception caught: " << e.what() << std::endl;
+		}
+	std::cout << std::endl << "--------------------------------------------------------------------" << std::endl;
+
+	std::cout << std::endl << "3. Intern creates a presidential pardon form" << std::endl;
+		try
+		{
+			Intern	Ana;
+			AForm *	form;
+
+			form = Ana.makeForm("PresidentialPardonForm", "Pedro");
+			std::cout << *form << std::endl;
+            std::cout << form << std::endl;
+		}
+		catch(std::exception &e)
+		{
+			std::cout << "Exception caught: " << e.what() << std::endl;
+		}
+	std::cout << std::endl << "--------------------------------------------------------------------" << std::endl;
+
+	std::cout << std::endl << "4. Intern intents to create an invalid form" << std::endl;
+		try
+		{
+			Intern	INV;
+			AForm *	form;
+
+			form = INV.makeForm("hgello", "Pedro");
+			std::cout << "Should be NULL: " << form << std::endl;
+		}
+		catch(std::exception &e)
+		{
+			std::cout << "Exception caught: " << e.what() << std::endl;
+		}
+	std::cout << std::endl << "--------------------------------------------------------------------" << std::endl;
     return 0;
 }

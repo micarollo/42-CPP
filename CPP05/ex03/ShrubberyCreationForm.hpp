@@ -18,6 +18,7 @@ class ShrubberyCreationForm : public AForm
         std::string const & getTarget(void) const;
 
         void execute(Bureaucrat const & executor) const;
+        virtual AForm *		getCopy( void )const;
 
     private:
         const std::string _target;

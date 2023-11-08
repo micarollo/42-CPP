@@ -2,22 +2,22 @@
 
 RobotomyRequestForm::RobotomyRequestForm(void) : AForm("RobotomyRequestForm", 72, 45), _target("")
 {
-    std::cout << "Default constructor called" << std::endl;
+    // std::cout << "Default constructor called" << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RobotomyRequestForm", 72, 45), _target(target)
 {
-    std::cout << "Constructor called" << std::endl;
+    // std::cout << "Constructor called" << std::endl;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm(void)
 {
-    std::cout << "Default destructor called" << std::endl;
+    // std::cout << "Default destructor called" << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const & cp) : AForm(cp), _target(cp._target)
 {
-    std::cout << "Copy constructor called" << std::endl;
+    // std::cout << "Copy constructor called" << std::endl;
 }
 
 RobotomyRequestForm & RobotomyRequestForm::operator=(RobotomyRequestForm const & robForm)
@@ -45,4 +45,19 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 		std::cout << _target << " was robotomized" << std::endl;
 	else
 		std::cout << _target << " was not robotomized" << std::endl;
+}
+
+AForm *		RobotomyRequestForm::getCopy( void )const
+{
+	AForm* copy = new RobotomyRequestForm(*this);
+	return (copy);
+}
+
+std::ostream & operator<<(std::ostream &o, RobotomyRequestForm const &rb)
+{
+	o << "Name: " << rb.getName() << std::endl;
+    o << "Its signed: " << rb.getIsSigned() << std::endl;
+    o << "Grade require to sign: " << rb.getGradeToSign() << std::endl;
+    o << "Grade require to execute: " << rb.getGradeToExect() << std::endl;
+	return (o);
 }

@@ -3,12 +3,12 @@
 
 Bureaucrat::Bureaucrat(void)
 {
-    std::cout << "Default constructor called" << std::endl;
+    // std::cout << "Default constructor called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string name, int range) : _name(name), _range(range)
 {
-    std::cout << "Constructor called" << std::endl;
+    // std::cout << "Constructor called" << std::endl;
     if (this->_range > 150)
         throw Bureaucrat::GradeTooLowException();
     if (this->_range < 1)
@@ -17,13 +17,13 @@ Bureaucrat::Bureaucrat(std::string name, int range) : _name(name), _range(range)
 
 Bureaucrat::Bureaucrat(Bureaucrat const &cp)
 {
-    std::cout << "Copy constructor called" << std::endl;
+    // std::cout << "Copy constructor called" << std::endl;
     *this = cp;
 }
 
 Bureaucrat::~Bureaucrat(void)
 {
-    std::cout << "Default destructor called" << std::endl;
+    // std::cout << "Default destructor called" << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &bureaucrat)
