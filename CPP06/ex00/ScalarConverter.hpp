@@ -5,6 +5,11 @@
 #include <sstream>
 #include <string>
 
+#define CHAR 1
+#define INT 2
+#define FLOAT 3
+#define DOUBLE 4
+
 class ScalarConverter
 {
 public:
@@ -16,18 +21,21 @@ private:
     ~ScalarConverter(void);
     ScalarConverter & operator=(ScalarConverter const & src);
 
-    int _isInt;
-    char _isChar;
-    float _isFloat;
-    double _isDouble;
+    static std::string _lit;
+    static int _isInt;
+    static char _isChar;
+    static float _isFloat;
+    static double _isDouble;
 
-    static bool isIntLiteral(const std::string input);
+    static int findType(std::string s);
+    static void print(int i);
 
-    static bool isFloatLiteral(const std::string input);
+    // static bool isIntLiteral(const std::string input);
+    // static bool isFloatLiteral(const std::string input);
+    // static bool isDoubleLiteral(const std::string input);
+    // static bool isCharLiteral(const std::string input);
 
-    static bool isDoubleLiteral(const std::string input);
-
-    static bool isCharLiteral(const std::string input);
+    // static void convertToInt(std::string s);
 };
 
 #endif
