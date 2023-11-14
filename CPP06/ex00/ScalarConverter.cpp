@@ -6,6 +6,7 @@ float ScalarConverter::_isFloat;
 double ScalarConverter::_isDouble;
 std::string ScalarConverter::_lit;
 bool ScalarConverter::_flag;
+bool ScalarConverter::_pseudo;
 
 ScalarConverter::ScalarConverter(void)
 {
@@ -47,18 +48,15 @@ static bool isFloatLiteral(const std::string input)
     float floatValue;
     size_t fPos = input.find("f");
     size_t dotPos = input.find('.');
-    // std::cout << fPos << std::endl;
-    // std::cout << input.length() << std::endl;
     if (fPos == (input.length() - 1) && dotPos)
     {
-        std::cout << "estoy aqui" << std::endl;
         stream >> floatValue && stream.eof();
-        std::cout << "Es un literal de float sin 'f': " << floatValue << std::endl;
+        // std::cout << "Es un literal de float sin 'f': " << floatValue << std::endl;
         return true;
     }
     if (stream >> floatValue && stream.eof()) 
     {
-        std::cout << "Es un literal de float sin 'f': " << floatValue << std::endl;
+        // std::cout << "Es un literal de float sin 'f': " << floatValue << std::endl;
         return true;
     }
     return false;
@@ -92,13 +90,14 @@ static bool isPrintable(int i)
 void ScalarConverter::print(int i)
 {
     size_t dotPos = _lit.find('.');
-    // bool flag;
-    // if ((_lit[dotPos + 1] == '0' && _lit[dotPos + 2] == 'f' && (dotPos + 2) == _lit.length() - 1))
-    // {
-    //     std::cout << "entro en la flag" << std::endl;
-    //     flag = 1;
-    // }
-    if (i == CHAR)
+    if (_pseudo)
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: " << _isFloat << "f" << std::endl;
+        std::cout << "double: " << static_cast<double>(_isFloat) << std::endl;
+    }
+    else if (i == CHAR)
     {
         std::cout << "char: " << _isChar << std::endl;
         std::cout << "int: " << static_cast<int>(_isChar) << std::endl;
@@ -156,20 +155,25 @@ void ScalarConverter::print(int i)
             std::cout << "double: " << _isDouble << std::endl;
         }
     }
+    // else if (i == 5)
+    //     std::cout << "pseudo lit" << std::endl;
 }
 
 int ScalarConverter::findType(std::string s)
 {
+    if (s == "-inff" || s == "inff" || s == "nanf" || s == "+inff")
+    {
+        _pseudo = 1;
+        s = s.substr(0, (s.length() - 1));
+        // return (PSEUDO);
+    }
     if (isCharLiteral(s))
     {
-        // std::cout << "char" << std::endl;
         _isChar = static_cast<char>(s[0]);
-        // std::cout << _isChar << std::endl;
         return (CHAR);
     }
     else if (isIntLiteral(s))
     {
-        // std::cout << "int" << std::endl;
         _isInt = std::atoi(s.c_str());
         return (INT);
     }
@@ -177,26 +181,21 @@ int ScalarConverter::findType(std::string s)
     {
         size_t dotPos = _lit.find('.');
         if ((_lit[dotPos + 1] == '0' && (dotPos + 1) == _lit.length() - 1))
-        {
-            std::cout << "entro en la flag" << std::endl;
             _flag = 1;
-        }
-        // std::cout << "double" << std::endl;
         _isDouble = std::atof(s.c_str());
-        // std::cout << _isDouble << std::endl;
         return (DOUBLE);
     }
     else if (isFloatLiteral(s))
     {
+        if (s == "inf" || s == "-inf" || s == "nan" || s == "+inf")
+            _pseudo = 1;
         size_t dotPos = _lit.find('.');
         if ((_lit[dotPos + 1] == '0' && _lit[dotPos + 2] == 'f' && (dotPos + 2) == _lit.length() - 1))
         {
             std::cout << "entro en la flag" << std::endl;
             _flag = 1;
         }
-        // std::cout << "float" << std::endl;
         _isFloat = std::atof(s.c_str());
-        // std::cout << _isFloat << std::endl;
         return (FLOAT);
     }
     else
@@ -221,23 +220,4 @@ void ScalarConverter::convert(std::string s)
     // inst._lit = s;
     _lit = s;
     print(findType(s));
-    // switch (findType(s))
-    // {
-    // case CHAR:
-    // {
-    //     break;
-    // }
-    // case INT:
-    //     break;
-
-    // case DOUBLE:
-    //     break;
-
-    // case FLOAT:
-    //     break;
-
-    // default:
-    //     break;
-    // }
-
 }

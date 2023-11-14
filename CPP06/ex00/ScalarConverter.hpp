@@ -10,6 +10,7 @@
 #define INT 2
 #define FLOAT 3
 #define DOUBLE 4
+// #define PSEUDO 5
 
 class ScalarConverter
 {
@@ -24,6 +25,7 @@ private:
 
     static std::string _lit;
     static bool _flag;
+    static bool _pseudo;
     static int _isInt;
     static char _isChar;
     static float _isFloat;
