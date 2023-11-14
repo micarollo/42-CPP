@@ -49,17 +49,7 @@ static bool isFloatLiteral(const std::string input)
     size_t fPos = input.find("f");
     size_t dotPos = input.find('.');
     if (fPos == (input.length() - 1) && dotPos)
-    {
-        // stream >> floatValue && stream.eof();
-        // std::cout << "Es un literal de float sin 'f': " << floatValue << std::endl;
         return true;
-    }
-    // if (stream >> floatValue && stream.eof()) 
-    // {
-    //     // std::cout << "Es un literal de float sin 'f': " << floatValue << std::endl;
-    //     return true;
-    // }
-    // return false;
     return (stream >> floatValue) && stream.eof();
 }
 
@@ -199,19 +189,6 @@ int ScalarConverter::findType(std::string s)
 
 void ScalarConverter::convert(std::string s)
 {
-    // if (ScalarConverter::isCharLiteral(s))
-    //     std::cout << "char" << std::endl;
-    // else if (ScalarConverter::isIntLiteral(s))
-    //     std::cout << "int" << std::endl;
-    // else if (ScalarConverter::isDoubleLiteral(s))
-    //     std::cout << "double" << std::endl;
-    // else if (ScalarConverter::isFloatLiteral(s))
-    //     std::cout << "float" << std::endl;
-    // else
-    //     std::cout << "imposible" << std::endl;
-    // findType(s);
-    // ScalarConverter inst;
-    // inst._lit = s;
     _lit = s;
     print(findType(s));
 }

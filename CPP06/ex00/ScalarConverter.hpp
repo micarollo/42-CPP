@@ -10,7 +10,6 @@
 #define INT 2
 #define FLOAT 3
 #define DOUBLE 4
-// #define PSEUDO 5
 
 class ScalarConverter
 {
