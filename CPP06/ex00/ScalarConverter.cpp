@@ -50,17 +50,17 @@ static bool isFloatLiteral(const std::string input)
     size_t dotPos = input.find('.');
     if (fPos == (input.length() - 1) && dotPos)
     {
-        stream >> floatValue && stream.eof();
+        // stream >> floatValue && stream.eof();
         // std::cout << "Es un literal de float sin 'f': " << floatValue << std::endl;
         return true;
     }
-    if (stream >> floatValue && stream.eof()) 
-    {
-        // std::cout << "Es un literal de float sin 'f': " << floatValue << std::endl;
-        return true;
-    }
-    return false;
-    // return (stream >> floatValue) && stream.eof();
+    // if (stream >> floatValue && stream.eof()) 
+    // {
+    //     // std::cout << "Es un literal de float sin 'f': " << floatValue << std::endl;
+    //     return true;
+    // }
+    // return false;
+    return (stream >> floatValue) && stream.eof();
 }
 
 
@@ -114,7 +114,7 @@ void ScalarConverter::print(int i)
         std::cout << "float: " << static_cast<float>(_isInt) << ".f" << std::endl;
         std::cout << "double: " << static_cast<double>(_isInt) << ".0" << std::endl;
     }
-    else if (i == FLOAT) //42.02f 42.0f CAOSSSS
+    else if (i == FLOAT)
     {
         if (isPrintable(static_cast<int>(_isFloat)))
             std::cout << "char: '" << static_cast<char>(_isFloat) << "'" << std::endl;
@@ -155,8 +155,6 @@ void ScalarConverter::print(int i)
             std::cout << "double: " << _isDouble << std::endl;
         }
     }
-    // else if (i == 5)
-    //     std::cout << "pseudo lit" << std::endl;
 }
 
 int ScalarConverter::findType(std::string s)
@@ -165,7 +163,6 @@ int ScalarConverter::findType(std::string s)
     {
         _pseudo = 1;
         s = s.substr(0, (s.length() - 1));
-        // return (PSEUDO);
     }
     if (isCharLiteral(s))
     {
@@ -191,15 +188,12 @@ int ScalarConverter::findType(std::string s)
             _pseudo = 1;
         size_t dotPos = _lit.find('.');
         if ((_lit[dotPos + 1] == '0' && _lit[dotPos + 2] == 'f' && (dotPos + 2) == _lit.length() - 1))
-        {
-            std::cout << "entro en la flag" << std::endl;
             _flag = 1;
-        }
         _isFloat = std::atof(s.c_str());
         return (FLOAT);
     }
     else
-        std::cout << "imposible" << std::endl;
+        throw NotValid();
     return (0);
 }
 
@@ -220,4 +214,9 @@ void ScalarConverter::convert(std::string s)
     // inst._lit = s;
     _lit = s;
     print(findType(s));
+}
+
+const char * ScalarConverter::NotValid::what() const throw()
+{
+    return ("Not valid input");
 }

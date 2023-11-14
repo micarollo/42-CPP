@@ -16,6 +16,11 @@ class ScalarConverter
 {
 public:
     static void convert(std::string s);
+    class NotValid : public std::exception
+    {
+    public:
+        const char *	what() const throw();
+    };
 
 private:
     ScalarConverter(void);
