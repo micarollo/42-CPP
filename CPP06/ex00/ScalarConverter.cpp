@@ -5,6 +5,7 @@ char ScalarConverter::_isChar;
 float ScalarConverter::_isFloat;
 double ScalarConverter::_isDouble;
 std::string ScalarConverter::_lit;
+bool ScalarConverter::_flag;
 
 ScalarConverter::ScalarConverter(void)
 {
@@ -29,6 +30,7 @@ ScalarConverter & ScalarConverter::operator=(ScalarConverter const & src)
     _isInt = src._isInt;
     _isDouble = src._isDouble;
     _isFloat = src._isFloat;
+    _flag = src._flag;
     return (*this);
 }
 
@@ -39,17 +41,31 @@ static bool isIntLiteral(const std::string input)
     return (stream >> intValue) && stream.eof();
 }
 
-static bool isFloatLiteral(const std::string input) {
+static bool isFloatLiteral(const std::string input) 
+{
     std::istringstream stream(input);
-        float floatValue;
-            size_t fPos = input.find("f");
-            size_t dotPos = input.find('.');
-            // std::cout << fPos << std::endl;
-            // std::cout << input.length() << std::endl;
-            if (fPos == (input.length() - 1) && dotPos)
-                return true;
-            return (stream >> floatValue) && stream.eof();
+    float floatValue;
+    size_t fPos = input.find("f");
+    size_t dotPos = input.find('.');
+    // std::cout << fPos << std::endl;
+    // std::cout << input.length() << std::endl;
+    if (fPos == (input.length() - 1) && dotPos)
+    {
+        std::cout << "estoy aqui" << std::endl;
+        stream >> floatValue && stream.eof();
+        std::cout << "Es un literal de float sin 'f': " << floatValue << std::endl;
+        return true;
+    }
+    if (stream >> floatValue && stream.eof()) 
+    {
+        std::cout << "Es un literal de float sin 'f': " << floatValue << std::endl;
+        return true;
+    }
+    return false;
+    // return (stream >> floatValue) && stream.eof();
 }
+
+
 
 static bool isDoubleLiteral(const std::string input) {
     std::istringstream stream(input);
@@ -76,6 +92,12 @@ static bool isPrintable(int i)
 void ScalarConverter::print(int i)
 {
     size_t dotPos = _lit.find('.');
+    // bool flag;
+    // if ((_lit[dotPos + 1] == '0' && _lit[dotPos + 2] == 'f' && (dotPos + 2) == _lit.length() - 1))
+    // {
+    //     std::cout << "entro en la flag" << std::endl;
+    //     flag = 1;
+    // }
     if (i == CHAR)
     {
         std::cout << "char: " << _isChar << std::endl;
@@ -100,7 +122,12 @@ void ScalarConverter::print(int i)
         else
             std::cout << "char: " << "Non displayable" << std::endl;
         std::cout << "int: " << static_cast<int>(_isFloat) << std::endl;
-        if (dotPos)
+        if (_flag)
+        {
+            std::cout << "float: " << _isFloat << ".0f" << std::endl;
+            std::cout << "double: " << static_cast<double>(_isFloat) << ".0" << std::endl;
+        }
+        else if (dotPos)
         {
             std::cout << "float: " << _isFloat << "f" << std::endl;
             std::cout << "double: " << static_cast<double>(_isFloat) << std::endl;
@@ -118,8 +145,16 @@ void ScalarConverter::print(int i)
         else
             std::cout << "char: " << "Non displayable" << std::endl;
         std::cout << "int: " << static_cast<int>(_isDouble) << std::endl;
-        std::cout << "float: " << static_cast<float>(_isDouble) << "f" << std::endl;
-        std::cout << "double: " << _isDouble << std::endl;
+        if (_flag)
+        {
+            std::cout << "float: " << static_cast<double>(_isDouble) << ".0f" << std::endl;
+            std::cout << "double: " << _isDouble << ".0" << std::endl;
+        }
+        else
+        {
+            std::cout << "float: " << static_cast<float>(_isDouble) << "f" << std::endl;
+            std::cout << "double: " << _isDouble << std::endl;
+        }
     }
 }
 
@@ -140,6 +175,12 @@ int ScalarConverter::findType(std::string s)
     }
     else if (isDoubleLiteral(s))
     {
+        size_t dotPos = _lit.find('.');
+        if ((_lit[dotPos + 1] == '0' && (dotPos + 1) == _lit.length() - 1))
+        {
+            std::cout << "entro en la flag" << std::endl;
+            _flag = 1;
+        }
         // std::cout << "double" << std::endl;
         _isDouble = std::atof(s.c_str());
         // std::cout << _isDouble << std::endl;
@@ -147,6 +188,12 @@ int ScalarConverter::findType(std::string s)
     }
     else if (isFloatLiteral(s))
     {
+        size_t dotPos = _lit.find('.');
+        if ((_lit[dotPos + 1] == '0' && _lit[dotPos + 2] == 'f' && (dotPos + 2) == _lit.length() - 1))
+        {
+            std::cout << "entro en la flag" << std::endl;
+            _flag = 1;
+        }
         // std::cout << "float" << std::endl;
         _isFloat = std::atof(s.c_str());
         // std::cout << _isFloat << std::endl;

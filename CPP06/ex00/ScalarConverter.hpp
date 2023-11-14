@@ -4,6 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <stdlib.h>
 
 #define CHAR 1
 #define INT 2
@@ -22,6 +23,7 @@ private:
     ScalarConverter & operator=(ScalarConverter const & src);
 
     static std::string _lit;
+    static bool _flag;
     static int _isInt;
     static char _isChar;
     static float _isFloat;
