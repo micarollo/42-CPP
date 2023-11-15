@@ -10,21 +10,21 @@ bool ScalarConverter::_pseudo;
 
 ScalarConverter::ScalarConverter(void)
 {
-    return ;
+    return;
 }
 
-ScalarConverter::ScalarConverter(const ScalarConverter & cp)
+ScalarConverter::ScalarConverter(const ScalarConverter &cp)
 {
     *this = cp;
-    return ;
+    return;
 }
 
 ScalarConverter::~ScalarConverter(void)
 {
-    return ;
+    return;
 }
 
-ScalarConverter & ScalarConverter::operator=(ScalarConverter const & src)
+ScalarConverter &ScalarConverter::operator=(ScalarConverter const &src)
 {
     (void)src;
     _isChar = src._isChar;
@@ -35,14 +35,14 @@ ScalarConverter & ScalarConverter::operator=(ScalarConverter const & src)
     return (*this);
 }
 
-static bool isIntLiteral(const std::string input) 
+static bool isIntLiteral(const std::string input)
 {
     std::istringstream stream(input);
     int intValue;
     return (stream >> intValue) && stream.eof();
 }
 
-static bool isFloatLiteral(const std::string input) 
+static bool isFloatLiteral(const std::string input)
 {
     std::istringstream stream(input);
     float floatValue;
@@ -53,15 +53,14 @@ static bool isFloatLiteral(const std::string input)
     return (stream >> floatValue) && stream.eof();
 }
 
-
-
-static bool isDoubleLiteral(const std::string input) {
+static bool isDoubleLiteral(const std::string input)
+{
     std::istringstream stream(input);
     double doubleValue;
     return (stream >> doubleValue) && stream.eof();
 }
 
-static bool isCharLiteral(const std::string input) 
+static bool isCharLiteral(const std::string input)
 {
     if (input.size() == 3 && input[0] == '\'' && input[2] == '\'')
         return true;
@@ -99,7 +98,8 @@ void ScalarConverter::print(int i)
         if (isPrintable(_isInt))
             std::cout << "char: '" << static_cast<char>(_isInt) << "'" << std::endl;
         else
-            std::cout << "char: " << "Non displayable" << std::endl;
+            std::cout << "char: "
+                      << "Non displayable" << std::endl;
         std::cout << "int: " << _isInt << std::endl;
         std::cout << "float: " << static_cast<float>(_isInt) << ".f" << std::endl;
         std::cout << "double: " << static_cast<double>(_isInt) << ".0" << std::endl;
@@ -109,7 +109,8 @@ void ScalarConverter::print(int i)
         if (isPrintable(static_cast<int>(_isFloat)))
             std::cout << "char: '" << static_cast<char>(_isFloat) << "'" << std::endl;
         else
-            std::cout << "char: " << "Non displayable" << std::endl;
+            std::cout << "char: "
+                      << "Non displayable" << std::endl;
         std::cout << "int: " << static_cast<int>(_isFloat) << std::endl;
         if (_flag)
         {
@@ -132,7 +133,8 @@ void ScalarConverter::print(int i)
         if (isPrintable(static_cast<int>(_isDouble)))
             std::cout << "char: '" << static_cast<char>(_isDouble) << "'" << std::endl;
         else
-            std::cout << "char: " << "Non displayable" << std::endl;
+            std::cout << "char: "
+                      << "Non displayable" << std::endl;
         std::cout << "int: " << static_cast<int>(_isDouble) << std::endl;
         if (_flag)
         {
@@ -193,7 +195,15 @@ void ScalarConverter::convert(std::string s)
     print(findType(s));
 }
 
-const char * ScalarConverter::NotValid::what() const throw()
+const char *ScalarConverter::NotValid::what() const throw()
 {
     return ("Not valid input");
 }
+
+// 1.
+// 2f
+// -2f
+// num cn un digito
+// MAX MIN
+// inf y demas
+// char mas grande, cuando no cabe debe imp imposible, y en int tamb
