@@ -1,10 +1,8 @@
 #ifndef B_HPP
 #define B_HPP
 
-class B
-{
-public:
-private:
-};
+#include "Base.hpp"
+
+class B : public Base {};
 
 #endif
