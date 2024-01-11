@@ -13,6 +13,8 @@ int ScalarConverter::_int;
 char ScalarConverter::_char;
 float ScalarConverter::_float;
 double ScalarConverter::_double;
+bool ScalarConverter::_needF;
+bool ScalarConverter::_pseudo;
 
 ScalarConverter::ScalarConverter(void)
 {
@@ -37,6 +39,8 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter const &src)
     _int = src._int;
     _double = src._double;
     _float = src._float;
+    _needF = src._needF;
+    _pseudo = src._pseudo;
     return (*this);
 }
 
@@ -211,10 +215,10 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter const &src)
 //     print(findType(s));
 // }
 
-// const char *ScalarConverter::NotValid::what() const throw()
-// {
-//     return ("Not valid lit");
-// }
+const char *ScalarConverter::NotValid::what() const throw()
+{
+    return ("Not valid lit");
+}
 
 // 1.
 // 2f
@@ -223,6 +227,15 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter const &src)
 // MAX MIN
 // inf y demas
 // char mas grande, cuando no cabe debe imp imposible, y en int tamb
+
+bool ScalarConverter::isPseudo(std::string lit)
+{
+    if (lit == "-inf" || lit == "nan" || lit == "+inf")
+        return true;
+    if (lit == "-inff" || lit == "nanf" || lit == "+inff")
+        return true;
+    return false;
+}
 
 bool ScalarConverter::isChar(std::string lit)
 {
@@ -248,7 +261,10 @@ bool ScalarConverter::isDouble(std::string lit)
     size_t dot_count = 0;
 
     if (lit == "-inf" || lit == "nan" || lit == "+inf")
+    {
+        _pseudo = true;
         return true;
+    }
     size_t dot = lit.find(".");
     if (dot == std::string::npos)
         return false;
@@ -267,13 +283,18 @@ bool ScalarConverter::isDouble(std::string lit)
                 return false;
         }
     }
+    if (dot + 2 == lit.length() && (lit[lit.length() - 1] == '0'))
+        _needF = true;
     return true;
 }
 
 bool ScalarConverter::isFloat(std::string lit)
 {
     if (lit == "-inff" || lit == "nanf" || lit == "+inff")
+    {
+        _pseudo = true;
         return true;
+    }
     size_t dot_count = 0;
     size_t dot = lit.find(".");
     size_t charF = lit.find("f");
@@ -296,34 +317,162 @@ bool ScalarConverter::isFloat(std::string lit)
                 return false;
         }
     }
+    if ((charF + 1 == lit.length()) && (lit[lit.length() - 2] == '0') && (lit[lit.length() - 3] == '.'))
+        _needF = true;
     if ((charF + 1 == lit.length()) && (dot + 1 != charF))
         return true;
     return false;
 }
 
+void ScalarConverter::convertAndPrint(std::string lit, int type)
+{
+    switch (type)
+    {
+    case CHAR:
+    {
+        _int = static_cast<int>(lit[0]);
+        std::cout << "char: '" << lit << "'" << std::endl;
+        std::cout << "int: " << _int << std::endl;
+        std::cout << "float: " << _int << ".0f" << std::endl;
+        std::cout << "double: " << _int << ".0" << std::endl;
+    }
+    break;
+
+    case INT:
+    {
+        int res = 0;
+        for (std::size_t i = 0; i < lit.length(); ++i)
+        {
+            if (lit[i] >= '0' && lit[i] <= '9')
+            {
+                res = res * 10 + (lit[i] - '0');
+            }
+        }
+        _int = res;
+        if (res > 31 && res < 127)
+        {
+            _char = res;
+            std::cout << "char: '" << _char << "'" << std::endl;
+        }
+        else
+            std::cout << "char: Non displayable" << std::endl;
+        std::cout << "int: " << _int << std::endl;
+        std::cout << "float: " << _int << ".0f" << std::endl;
+        std::cout << "double: " << _int << ".0" << std::endl;
+    }
+    break;
+
+    case FLOAT:
+    {
+        _float = static_cast<float>(std::atof(lit.c_str()));
+        _int = static_cast<int>(_float);
+        if (_needF == true)
+        {
+            if (_int > 31 && _int < 127)
+            {
+                _char = _int;
+                std::cout << "char: '" << _char << "'" << std::endl;
+            }
+            else
+                std::cout << "char: Non displayable" << std::endl;
+            std::cout << "int: " << _int << std::endl;
+            std::cout << "float: " << _float << ".0f" << std::endl;
+            std::cout << "double: " << _float << ".0" << std::endl;
+        }
+        else
+        {
+            if (_int > 31 && _int < 127)
+            {
+                _char = _int;
+                std::cout << "char: '" << _char << "'" << std::endl;
+            }
+            else
+                std::cout << "char: Non displayable" << std::endl;
+            std::cout << "int: " << _int << std::endl;
+            std::cout << "float: " << _float << "f" << std::endl;
+            std::cout << "double: " << _float << std::endl;
+        }
+    }
+    break;
+
+    case DOUBLE:
+    {
+        _double = std::strtod(lit.c_str(), nullptr);
+        _int = static_cast<int>(_double);
+        if (_needF == true)
+        {
+            if (_int > 31 && _int < 127)
+            {
+                _char = _int;
+                std::cout << "char: '" << _char << "'" << std::endl;
+            }
+            else
+                std::cout << "char: Non displayable" << std::endl;
+            std::cout << "int: " << _int << std::endl;
+            std::cout << "float: " << _double << ".0f" << std::endl;
+            std::cout << "double: " << _double << ".0" << std::endl;
+        }
+        else
+        {
+            if (_int > 31 && _int < 127)
+            {
+                _char = _int;
+                std::cout << "char: '" << _char << "'" << std::endl;
+            }
+            else
+                std::cout << "char: Non displayable" << std::endl;
+            std::cout << "int: " << _int << std::endl;
+            std::cout << "float: " << _double << "f" << std::endl;
+            std::cout << "double: " << _double << std::endl;
+        }
+    }
+    break;
+
+    case PSEUDO:
+    {
+        _double = std::strtod(lit.c_str(), nullptr);
+        _float = static_cast<float>(std::atof(lit.c_str()));
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: " << _float << "f" << std::endl;
+        std::cout << "double: " << _double << std::endl;
+    }
+    break;
+
+    default:
+        break;
+    }
+}
+
 void ScalarConverter::convert(std::string s)
 {
     _lit = s;
-    int type;
+    int type = 0;
 
-    if (isChar(_lit) == true)
+    if (isPseudo(_lit) == true)
+    {
+        type = PSEUDO;
+        std::cout << "type pseudo" << std::endl;
+    }
+    else if (isChar(_lit) == true)
     {
         type = CHAR;
         std::cout << "type char" << std::endl;
     }
-    if (isInt(_lit) == true)
+    else if (isInt(_lit) == true)
     {
         type = INT;
         std::cout << "type int" << std::endl;
     }
-    if (isDouble(_lit) == true)
+    else if (isDouble(_lit) == true)
     {
         type = DOUBLE;
         std::cout << "type double" << std::endl;
     }
-    if (isFloat(_lit) == true)
+    else if (isFloat(_lit) == true)
     {
         type = FLOAT;
         std::cout << "type float" << std::endl;
     }
+    convertAndPrint(_lit, type);
 }
