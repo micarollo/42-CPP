@@ -6,7 +6,7 @@ int ScalarConverter::_int;
 char ScalarConverter::_char;
 float ScalarConverter::_float;
 double ScalarConverter::_double;
-bool ScalarConverter::_needF;
+// bool ScalarConverter::_needF;
 bool ScalarConverter::_pseudo;
 
 ScalarConverter::ScalarConverter(void)
@@ -32,7 +32,7 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter const &src)
     _int = src._int;
     _double = src._double;
     _float = src._float;
-    _needF = src._needF;
+    // _needF = src._needF;
     _pseudo = src._pseudo;
     return (*this);
 }
@@ -97,8 +97,8 @@ bool ScalarConverter::isDouble(std::string lit)
                 return false;
         }
     }
-    if (dot + 2 == lit.length() && (lit[lit.length() - 1] == '0'))
-        _needF = true;
+    // if (dot + 2 == lit.length() && (lit[lit.length() - 1] == '0'))
+    //     _needF = true;
     return true;
 }
 
@@ -131,14 +131,14 @@ bool ScalarConverter::isFloat(std::string lit)
                 return false;
         }
     }
-    if ((charF + 1 == lit.length()) && (lit[lit.length() - 2] == '0') && (lit[lit.length() - 3] == '.'))
-        _needF = true;
+    // if ((charF + 1 == lit.length()) && (lit[lit.length() - 2] == '0') && (lit[lit.length() - 3] == '.'))
+    //     _needF = true;
     if ((charF + 1 == lit.length()) && (dot + 1 != charF))
         return true;
     return false;
 }
 
-void ScalarConverter::printChar(int n)
+void ScalarConverter::printChar(double n)
 {
     if (n > 31 && n < 127)
     {
@@ -158,41 +158,22 @@ void ScalarConverter::convertAndPrint(std::string lit, int type)
         test = static_cast<double>(lit[0]);
     else
         test = std::stold(lit);
-
     // nuevo
     if (type == CHAR || type == INT || type == FLOAT || type == DOUBLE)
     {
-        if (test > 31 && test < 127)
-        {
-            _char = test;
-            std::cout << "char: '" << _char << "'" << std::endl;
-        }
-        else if (test > 127 || test < -128)
-            std::cout << "char: impossible" << std::endl;
-        else
-            std::cout << "char: Non displayable" << std::endl;
-        if (test > 2147483647 || test < -2147483648)
-        {
+        printChar(test);
+        if (test > std::numeric_limits<int>::max() || test < std::numeric_limits<int>::lowest())
             std::cout << "int: impossible" << std::endl;
-            // std::cout << "float: " << res << ".0f" << std::endl;
-            if (test > std::numeric_limits<float>::max())
-                std::cout << "float: impossible" << std::endl;
-            else
-                std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(test) << "f" << std::endl;
-            if (test > std::numeric_limits<double>::max())
-                std::cout << "double: impossible" << std::endl;
-            else
-                std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(test) << std::endl;
-            // std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(test) << std::endl;
-        }
         else
-        {
             std::cout << "int: " << static_cast<int>(test) << std::endl;
-            // std::cout << "float: " << _int << ".0f" << std::endl;
+        if (test > std::numeric_limits<float>::max() || test < std::numeric_limits<float>::lowest())
+            std::cout << "float: impossible" << std::endl;
+        else
             std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(test) << "f" << std::endl;
+        if (test > std::numeric_limits<double>::max() || test < std::numeric_limits<double>::lowest())
+            std::cout << "double: impossible" << std::endl;
+        else
             std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(test) << std::endl;
-            // std::cout << "double: " << _int << ".0" << std::endl;
-        }
     }
     if (type == PSEUDO)
     {

@@ -33,7 +33,7 @@ private:
     static char _char;
     static float _float;
     static double _double;
-    static bool _needF;
+    // static bool _needF;
     static bool _pseudo;
 
     // static std::string _lit;
@@ -60,7 +60,7 @@ private:
     static bool isFloat(std::string lit);
     static bool isPseudo(std::string lit);
     static void convertAndPrint(std::string lit, int type);
-    static void printChar(int n);
+    static void printChar(double n);
 };
 
 #endif
