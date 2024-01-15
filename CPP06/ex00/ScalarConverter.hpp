@@ -60,6 +60,7 @@ private:
     static bool isFloat(std::string lit);
     static bool isPseudo(std::string lit);
     static void convertAndPrint(std::string lit, int type);
+    static void printChar(int n);
 };
 
 #endif
