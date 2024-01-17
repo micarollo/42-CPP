@@ -33,26 +33,7 @@ private:
     static char _char;
     static float _float;
     static double _double;
-    // static bool _needF;
     static bool _pseudo;
-
-    // static std::string _lit;
-    // static bool _flag;
-    // static bool _pseudo;
-    // static int _isInt;
-    // static char _isChar;
-    // static float _isFloat;
-    // static double _isDouble;
-
-    // static int findType(std::string s);
-    // static void print(int i);
-
-    // static bool isIntLiteral(const std::string input);
-    // static bool isFloatLiteral(const std::string input);
-    // static bool isDoubleLiteral(const std::string input);
-    // static bool isCharLiteral(const std::string input);
-
-    // static void convertToInt(std::string s);
 
     static bool isChar(std::string lit);
     static bool isInt(std::string lit);
