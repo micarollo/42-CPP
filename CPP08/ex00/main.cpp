@@ -1,21 +1,42 @@
 #include "easyfind.hpp"
 #include <vector>
 #include <iterator>
+#include <list>
 
-int main()
+int	main( int argc, char **argv )
 {
-     try
-    {
-   std::vector<int> vec;
-   vec.push_back(24);
-   vec.push_back(42);
-   vec.push_back(20);
-   vec.push_back(13);
-   vec.push_back(2);
-   std::vector<int>::iterator it = easyfind(vec,-8);     
+
+	std::vector<int> arr_int;
+	for (int i = 1; i <= 5; ++i) {
+        arr_int.push_back(i);
+    } 	
+	std::list<int>	lst_int;
+	for (int i = 1; i <= 5; ++i) {
+        lst_int.push_back(i);
     }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
+
+	(void) argc;
+	(void) argv;
+	try
+	{
+		std::cout << "1. Trying to find 2 in vector<1, 2, 3, 4, 5>" << std::endl;
+		std::cout << *easyfind(arr_int, 2) << std::endl;;	
+	}
+	catch(const std::exception & e)
+	{
+		std::cerr << "No occurrence is found" << std::endl;
+	}
+
+//-----------------------------------------------------------------------------------------------------//
+	
+	std::cout << std::endl;
+	try
+	{
+		std::cout << "2. Trying to find 6 in vector<1, 2, 3, 4, 5>" << std::endl;
+		std::cout << *easyfind(arr_int, 6) << std::endl;	
+	}
+	catch(const std::exception & e)
+	{
+		std::cerr << "No occurrence is found" << std::endl;
+	}
 }

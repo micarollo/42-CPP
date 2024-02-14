@@ -2,7 +2,7 @@
 #define EASYFIND_HPP
 
 #include <iostream>
-// #include <iterator>
+#include <iterator>
 #include <algorithm>
 
 
@@ -16,17 +16,12 @@ public:
 };
 
 template <typename T>
-typename T::iterator easyfind(const T& container, int value) 
+typename T::iterator easyfind(T & c, int value) 
 {
-    typename T::iterator it;
-
-    it = std::find(container.begin(), container.end(), value);
-    if (it != container.end()) {
+    typename T::iterator it = find(c.begin(), c.end(), value);
+    if (it == c.end())
         throw EasyFindException();
-    } else {
-        return (it);
-    }
+    return it;
 }
-
 
 #endif
