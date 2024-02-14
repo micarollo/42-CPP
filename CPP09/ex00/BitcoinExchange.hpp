@@ -7,10 +7,12 @@ class BitcoinExchange
 {
 private:
     std::map<std::string, float> _data;
+    std::string _input;
 
 public:
-    BitcoinExchange(std::string file);
+    BitcoinExchange(std::string file, std::string input);
     ~BitcoinExchange();
     void loadData(std::string const & csvFile);
-    // float getBitcoinValue(std::string const & date);
+    void findDate();
+
 };
