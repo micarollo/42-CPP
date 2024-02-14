@@ -2,6 +2,7 @@
 
 static void checkDate(std::string date);
 static float getNum(std::map<std::string, float> data, std::string fecha);
+static void checkValue(float n);
 
 BitcoinExchange::BitcoinExchange(std::string file, std::string input) : _input(input)
 {
@@ -65,6 +66,12 @@ static void checkDate(std::string date)
         std::cout << "error year" << std::endl;
 }
 
+static void checkValue(float n)
+{
+    if (n < 0 || n > 1000)
+        throw BitcoinExchange::ValueErr();
+}
+
 void BitcoinExchange::findDate()
 {
     std::ifstream file(_input);
@@ -83,12 +90,20 @@ void BitcoinExchange::findDate()
         std::string date = line.substr(0, line.find(" | "));
         std::cout << date << std::endl;
         checkDate(date);
-        std::string value = line.substr(line.find(" | ") + 1);
-        // std::cout << value << std::endl;
-        // float n = stof(value);
+        std::string value = line.substr(line.find(" | ") + 3);
+        std::cout << value << std::endl;
+        float n = stof(value);
         // std::cout << n << std::endl;
-        float result = getNum(_data, date);
-        std::cout << result << std::endl;
+        try
+        {
+            checkValue(n);
+            float result = getNum(_data, date);
+            std::cout << result << std::endl;
+        }
+        catch (std::exception &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
     }
     file.close();
 }
@@ -99,7 +114,7 @@ static float getNum(std::map<std::string, float> data, std::string date)
     
     if (it == data.begin() || it == data.end()) 
     {
-        return 0.0f;
+        throw BitcoinExchange::DbErr();
     } 
     else if (it->first == date) 
     {

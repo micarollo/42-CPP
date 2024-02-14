@@ -14,5 +14,44 @@ public:
     ~BitcoinExchange();
     void loadData(std::string const & csvFile);
     void findDate();
-
+    class DbErr : public std::exception
+	{
+	public:
+		virtual const char *what() const throw()
+		{
+			return "Error: Not in the database";
+		}
+	};
+    class MonthDayErr : public std::exception
+	{
+	public:
+		virtual const char *what() const throw()
+		{
+			return "Error: Incorrect month or day";
+		}
+	};
+    class Month30Err : public std::exception
+	{
+	public:
+		virtual const char *what() const throw()
+		{
+			return "Error: Month has 30 days";
+		}
+	};
+    class YearErr : public std::exception
+	{
+	public:
+		virtual const char *what() const throw()
+		{
+			return "Error: Incorrect year";
+		}
+	};
+    class ValueErr : public std::exception
+	{
+	public:
+		virtual const char *what() const throw()
+		{
+			return "Error: Too big or negative number";
+		}
+	};
 };
