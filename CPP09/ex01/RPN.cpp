@@ -9,7 +9,7 @@ static bool isOperator(const std::string &token)
     return token == "+" || token == "-" || token == "*" || token == "/";
 }
 
-static bool isOperatorChar(char c)
+static bool isOperator(char c)
 {
     if (c == '+' || c == '-' || c == '/' || c == '*')
 		return (true);
@@ -22,7 +22,7 @@ static void validateExpr(std::string expr)
     {
         if (i % 2 != 0 && expr[i] == ' ')
             continue;
-        else if (i % 2 == 0 && (isdigit(expr[i]) || isOperatorChar(expr[i])))
+        else if (i % 2 == 0 && (isdigit(expr[i]) || isOperator(expr[i])))
             continue;
         else
             throw RPN::Error();
