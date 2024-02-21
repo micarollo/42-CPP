@@ -12,8 +12,8 @@ static bool isOperator(const std::string &token)
 static bool isOperator(char c)
 {
     if (c == '+' || c == '-' || c == '/' || c == '*')
-		return (true);
-	return (false);
+        return (true);
+    return (false);
 }
 
 static void validateExpr(std::string expr)
@@ -71,7 +71,7 @@ void RPN::evaluate(std::string s)
     {
         validateExpr(s);
     }
-    catch(const std::exception& e)
+    catch (const std::exception &e)
     {
         std::cerr << e.what() << '\n';
         return;
@@ -84,7 +84,7 @@ void RPN::evaluate(std::string s)
                 res = INT_MIN;
         }
         else
-                _stack.push(stoi(token));
+            _stack.push(stoi(token));
     }
     if (_stack.size() != 1)
     {
