@@ -7,10 +7,12 @@ class PmergeMe
 {
 private:
 public:
-    void merge(std::vector<int> &arr, int left, int middle, int right);
-    void mergeSort(std::vector<int> &arr, int left, int right);
-    void printArray(const std::vector<int> &arr);
-    void merge(std::list<int> &arr, std::list<int>::iterator left, std::list<int>::iterator middle, std::list<int>::iterator right);
-    void mergeSort(std::list<int> &arr, std::list<int>::iterator left, std::list<int>::iterator right);
+    PmergeMe();
+    ~PmergeMe();
+    void mergeVector(std::vector<int> &arr, int left, int middle, int right);
+    void mergeSortVector(std::vector<int> &arr, int left, int right);
+    void mergeList(std::list<int>::iterator left, std::list<int>::iterator middle, std::list<int>::iterator right);
+    void mergeSortList(std::list<int> &arr, std::list<int>::iterator left, std::list<int>::iterator right);
+    void printVector(const std::vector<int> &arr);
     void printList(const std::list<int> &arr);
 };
