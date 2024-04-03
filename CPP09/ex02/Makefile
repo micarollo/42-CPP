@@ -5,6 +5,7 @@ BINARY				= PmergeMe
 # FILES
 # **************************************************************************** #
 SRCS				= main.cpp \
+					PmergeMe.cpp
 
 OBJS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.o}}
 DEPS				=${addprefix ${OBJS_DIR}, ${SRCS:.cpp=.d}}
