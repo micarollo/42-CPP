@@ -33,7 +33,7 @@ static bool performOperation(std::stack<int> &stack, const std::string &op)
 {
     if (stack.size() < 2)
     {
-        std::cout << "Error: Not enough operands for operator " << op << std::endl;
+        std::cout << "Error: Not enough operands for operator " << op << std::endl; //check
         return false;
     }
 
@@ -65,7 +65,6 @@ void RPN::evaluate(std::string s)
 {
     std::stringstream ss(s);
     std::string token;
-    int res = 0;
 
     try
     {
@@ -81,7 +80,7 @@ void RPN::evaluate(std::string s)
         if (isOperator(token))
         {
             if (!performOperation(_stack, token))
-                res = INT_MIN;
+                return;
         }
         else
             _stack.push(stoi(token));
@@ -89,8 +88,7 @@ void RPN::evaluate(std::string s)
     if (_stack.size() != 1)
     {
         std::cout << "Error: Invalid expression" << std::endl;
+        return;
     }
-    res = _stack.top();
-    if (res != INT_MIN)
-        std::cout << _stack.top() << std::endl;
+    std::cout << _stack.top() << std::endl;
 }

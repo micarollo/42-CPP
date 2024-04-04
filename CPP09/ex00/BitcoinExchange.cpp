@@ -42,13 +42,13 @@ void BitcoinExchange::loadData(std::string const & csvFile)
 static void checkDate(std::string date)
 {
     if (date.length() != 10)
-        std::cout << "error lenght" << std::endl;
+        std::cout << "Error: Lenght" << std::endl;
     for(size_t i = 0; i < date.length(); i++)
     {
         if (date[i] == '-' || isdigit(date[i]))
             continue;
         else
-            std::cout << "error digit" << std::endl;
+            std::cout << "Error: Digit" << std::endl;
     }
     std::string year = date.substr(0, date.find("-"));
     std::string month = date.substr(5, 2);
